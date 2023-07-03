@@ -1,4 +1,5 @@
 import {Request, Response, NextFunction} from 'express'
+import { NotFound } from '../errors/NotFound';
 
 export const errorMiddleware = (error: any, req: Request, res: Response, next: NextFunction) => {
     let statusCode: number = 500;
