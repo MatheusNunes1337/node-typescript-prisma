@@ -1,5 +1,5 @@
-import { CreateProductDTO } from "../dto/CreateDramaDto";
+import { CreateProductDTO } from "../dto/CreateProductDto";
 
 export interface CreateProductUseCase {
-    execute(drama: CreateProductDTO): Promise<any>
+    execute(product: CreateProductDTO): Promise<any>
 }

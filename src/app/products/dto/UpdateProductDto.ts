@@ -1,7 +1,7 @@
-import { CreateProductDTO } from "./CreateDramaDto";
+import { CreateProductDTO } from "./CreateProductDto";
 
 export interface UpdateProductDTO extends Partial<CreateProductDTO> {
-    product?: string,
+    name?: string,
     description?: string,
     price?: number,
     stock?: number,

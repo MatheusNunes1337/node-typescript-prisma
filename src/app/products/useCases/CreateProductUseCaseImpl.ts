@@ -1,10 +1,11 @@
-import { CreateProductDTO } from "../dto/CreateDramaDto";
-import { DramaRepository } from "../repositories/DramaRepository";
-import { CreateProductUseCase } from "./CreateDramaUseCase";
+import { CreateProductDTO } from "../dto/CreateProductDto";
+import { DramaRepository } from "../repositories/ProductRepository";
+import { CreateProductUseCase } from "./CreateProductUseCase";
 
 export class CreateProductUseCaseImpl implements CreateProductUseCase {
-    constructor(private readonly dramaRepository: DramaRepository) {}
-    async execute(drama: CreateProductDTO): Promise<any> {
-        const { title } = drama
+    constructor(private readonly productRepository: DramaRepository) {}
+    async execute(product: CreateProductDTO): Promise<any> {
+        const { name } = product
+
     }
 }
