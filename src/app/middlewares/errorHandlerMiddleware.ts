@@ -7,5 +7,5 @@ export const errorMiddleware = (error: any, req: Request, res: Response, next: N
     if (error instanceof NotFound) statusCode = 404;
     else statusCode = 400;
 
-    res.status(statusCode).json(statusCode !== 500 ? error : 'Something went wrong');
+    res.status(statusCode).json(statusCode !== 500 ? error.message : 'Something went wrong');
 };

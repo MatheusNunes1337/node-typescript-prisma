@@ -15,6 +15,6 @@ model Product {
   name  String  @unique 
   description String 
   price Decimal
-  Stock Int 
+  stock Int 
   coverImage String @default("default.png")
 }

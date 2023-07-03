@@ -1,5 +1,5 @@
 import { CreateProductDTO } from "../../dto/CreateProductDto";
 
-export interface CreateProductService {
+export interface CreateProductUseCase {
     execute(product: CreateProductDTO): Promise<any>
 }

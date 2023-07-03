@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateProductService } from "../services/CreateProduct/CreateProductService";
+import { CreateProductUseCase } from "../useCases/CreateProduct/CreateProductUseCase";
 
 export class CreateProductController {
-    constructor (private readonly createProductService: CreateProductService) {}
+    constructor (private readonly createProductUseCase: CreateProductUseCase) {}
     async execute(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
-            const product = await this.createProductService.execute(req.body)
+            const product = await this.createProductUseCase.execute(req.body)
             return res.status(201).json(product)
         } catch(error) {
             return next(error)
