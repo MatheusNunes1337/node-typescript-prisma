@@ -2,7 +2,7 @@ import { CreateProductDTO } from "../dto/CreateProductDto";
 import { FilterProductsDTO } from "../dto/FilterProductsDto";
 import { UpdateProductDTO } from "../dto/UpdateProductDto";
 
-export interface DramaRepository {
+export interface ProductRepository {
     create(user: CreateProductDTO): Promise<any>;
     findById(id: string): Promise<any | null>;
     findByFilter(filter: FilterProductsDTO): Promise<any | null>
