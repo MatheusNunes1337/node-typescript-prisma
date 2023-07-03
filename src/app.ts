@@ -1,4 +1,5 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
+import { errorMiddleware } from './app/middlewares/errorHandlerMiddleware';
 
 export class App {
   public application: Application;
@@ -7,6 +8,7 @@ export class App {
     this.application = express();
     this.configureMiddlewares();
     this.configureRoutes();
+    this.errorHandler()
   }
 
   private configureMiddlewares(): void {
@@ -16,6 +18,10 @@ export class App {
   private configureRoutes(): void {
     //this.app.use(routes);
     console.log('routes!')
+  }
+
+  private errorHandler(): void {
+    this.application.use(errorMiddleware)
   }
   
 }
