@@ -1,10 +1,10 @@
 import { NextFunction } from "express";
-import { CreateProductDTO } from "../dto/CreateProductDto";
-import { ProductRepository } from "../repositories/ProductRepository";
-import { CreateProductUseCase } from "./CreateProductUseCase";
-import { Conflict } from "../../errors/Conflict";
+import { CreateProductDTO } from "../../dto/CreateProductDto";
+import { ProductRepository } from "../../repositories/ProductRepository";
+import { CreateProductService } from "./CreateProductService";
+import { Conflict } from "../../../errors/Conflict";
 
-export class CreateProductUseCaseImpl implements CreateProductUseCase {
+export class CreateProductServiceImpl implements CreateProductService {
     constructor(
         private readonly productRepository: ProductRepository,
         private next: NextFunction
