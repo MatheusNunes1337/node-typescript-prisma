@@ -9,7 +9,7 @@ export class UpdateProductController {
             const updatedProduct = await this.updateProductUseCase.execute(req.body, +req.params.id)
             return res.status(200).json(updatedProduct)
         } catch(error) {
-            next(error)
+            return next(error)
         }
     }
 }
