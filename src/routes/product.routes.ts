@@ -4,6 +4,7 @@ import { getAllProductsController } from '../app/products/useCases/getAllProduct
 import { getProductByIdController } from '../app/products/useCases/getProductById'
 import { updateProductController } from '../app/products/useCases/UpdateProduct'
 import { deleteProductController } from '../app/products/useCases/DeleteProduct'
+import { putProductOnSaleController } from '../app/products/useCases/PutProductOnSale'
 
 const productRoutes = Router()
 
@@ -21,6 +22,10 @@ productRoutes.get('/:id', (req: Request, res: Response, next: NextFunction) => {
 
 productRoutes.put('/:id', (req: Request, res: Response, next: NextFunction) => {
     return updateProductController.execute(req, res, next)
+})
+
+productRoutes.patch('/:id', (req: Request, res: Response, next: NextFunction) => {
+    return putProductOnSaleController.execute(req, res, next)
 })
 
 productRoutes.delete('/:id', (req: Request, res: Response, next: NextFunction) => {

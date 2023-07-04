@@ -9,6 +9,6 @@ export interface ProductRepository {
     findById(id: number): Promise<Product | null>;
     findAll(): Promise<Array<Product> | []>
     findByFilter(filter?: FilterProductsDTO ): Promise<Array<Product> | []>
-    update(user: UpdateProductDTO, id: number): Promise<Product>;
+    update(product: UpdateProductDTO, id: number): Promise<Product>;
     delete(id: number): Promise<void>;
 }
