@@ -1,14 +1,14 @@
-import { Product } from '@prisma/client';
-import { CreateProductDTO } from "../dto/CreateProductDto";
-import { UpdateProductDTO } from "../dto/UpdateProductDto";
-import { FilterProductsDTO } from "../dto/FilterProductsDto";
+import { User } from '@prisma/client';
+import { CreateUserDTO } from "../dto/CreateUserDto";
+import { UpdateUserDTO } from "../dto/UpdateUserDto";
+import { FilterUserDTO } from "../dto/FilterUserDto";
 
 
-export interface ProductRepository {
-    create(user: CreateProductDTO): Promise<Product>;
-    findById(id: number): Promise<Product | null>;
-    findAll(): Promise<Array<Product> | []>
-    findByFilter(filter?: FilterProductsDTO ): Promise<Array<Product> | []>
-    update(product: UpdateProductDTO, id: number): Promise<Product>;
+export interface UserRepository {
+    create(user: CreateUserDTO): Promise<User>;
+    findById(id: number): Promise<User | null>;
+    findAll(): Promise<Array<User> | []>
+    findByFilter(filter?: FilterUserDTO ): Promise<Array<User> | []>
+    update(user: UpdateUserDTO, id: number): Promise<User>;
     delete(id: number): Promise<void>;
 }

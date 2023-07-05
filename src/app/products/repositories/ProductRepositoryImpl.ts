@@ -48,8 +48,4 @@ export class ProductRepositoryImpl implements ProductRepository {
         await this.prismaClient.product.delete({where: { id }})
         this.prismaClient.$disconnect()
     }
-     
-
-
-
 }

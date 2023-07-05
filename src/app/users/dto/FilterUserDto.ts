@@ -1,4 +1,4 @@
 export interface FilterUserDTO {
-   firstname?: string
-   lastanem?: string 
+   firstName?: string
+   lastName?: string 
 }
