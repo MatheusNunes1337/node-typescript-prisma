@@ -24,7 +24,7 @@ model Address {
   id         Int      @id @default(autoincrement())
   street     String
   number     Int
-  addressLine2 String
+  details String
   city       String
   state      String
   postalCode String
