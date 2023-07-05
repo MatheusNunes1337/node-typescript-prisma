@@ -5,10 +5,10 @@ import { FilterProductsDTO } from "../dto/FilterProductsDto";
 
 
 export interface ProductRepository {
-    create(user: CreateProductDTO): Promise<Product>;
+    create(productInput: CreateProductDTO): Promise<Product>;
     findById(id: number): Promise<Product | null>;
     findAll(): Promise<Array<Product> | []>
     findByFilter(filter?: FilterProductsDTO ): Promise<Array<Product> | []>
-    update(product: UpdateProductDTO, id: number): Promise<Product>;
+    update(productInput: UpdateProductDTO, id: number): Promise<Product>;
     delete(id: number): Promise<void>;
 }

@@ -7,9 +7,9 @@ import { UpdateProductDTO } from '../dto/UpdateProductDto';
 export class ProductRepositoryImpl implements ProductRepository {
     constructor(private readonly prismaClient: PrismaClient) {}
     
-    async create(product: CreateProductDTO): Promise<Product> {
+    async create(productInput: CreateProductDTO): Promise<Product> {
         const insertedProduct = await this.prismaClient.product.create({
-            data: {...product}
+            data: {...productInput}
         })
 
         this.prismaClient.$disconnect()
@@ -34,10 +34,10 @@ export class ProductRepositoryImpl implements ProductRepository {
         return product
     }
 
-    async update(product: UpdateProductDTO, id: number): Promise<Product> {
+    async update(productInput: UpdateProductDTO, id: number): Promise<Product> {
         const updatedProduct = await this.prismaClient.product.update({
             where: { id },
-            data: product
+            data: productInput
         })
 
         this.prismaClient.$disconnect()
