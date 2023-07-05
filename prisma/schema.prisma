@@ -16,7 +16,8 @@ model User {
   lastName  String
   email     String    @unique
   cpf     String    @unique
-  password String 
+  password String
+  profilePic String @default("default.png")
   addresses Address[]
 }
 
