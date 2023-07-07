@@ -47,7 +47,7 @@ describe("Given the PutProductOnSaleUseCase", () => {
     })
 
     describe("when is provided a product ID that NOT exists", () => {
-        test("it should put the product on sale and return it", async() => {
+        test("it should throw a not found error", async() => {
             productRepositoryMock.findById = jest.fn()
             .mockResolvedValue(false)
 
