@@ -2,7 +2,6 @@ import { ProductRepository } from "../../../../src/app/products/repositories/Pro
 import { GetAllProductsUseCaseImpl } from "../../../../src/app/products/useCases/getAllProducts/GetAllProductsUseCaseImpl";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
-import { Product } from "@prisma/client";
 
 const makeSut = (productRepository: ProductRepository) => {
     return new GetAllProductsUseCaseImpl(productRepository)
