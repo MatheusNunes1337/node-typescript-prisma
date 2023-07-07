@@ -1,5 +1,6 @@
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
 import { Conflict } from "../../../../src/app/errors/Conflict";
+import { CreateProductDTO } from "../../../../src/app/products/dto/CreateProductDto";
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
 import { CreateProductUseCaseImpl } from "../../../../src/app/products/useCases/CreateProduct/CreateProductServiceImpl";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
@@ -11,10 +12,12 @@ function sutFactory(productRepository: ProductRepository): CreateProductUseCaseI
 describe("Given the CreateProductUseCase", () => {
     let sut: CreateProductUseCaseImpl;
     let productRepositoryMock: ProductRepository;
+    let productInput: CreateProductDTO
 
     beforeAll(() => {
       productRepositoryMock = productRepositoryMockFactory();
       sut = sutFactory(productRepositoryMock);
+      productInput = createRandomProductFixture()
     });
 
     describe("when a product with correct body is provided", () => {
@@ -26,7 +29,6 @@ describe("Given the CreateProductUseCase", () => {
         .mockResolvedValue([])
   
         sut = sutFactory(productRepositoryMock);
-        const productInput = createRandomProductFixture()
 
         const result = await sut.execute(productInput)
 
@@ -39,5 +41,18 @@ describe("Given the CreateProductUseCase", () => {
           coverImage: expect.any(String)
         })
       });
+    })
+
+    describe("when is provided a product with a name that is already in use", () => {
+      test("then it should throw a conflict error", async() => {
+        productRepositoryMock.findByFilter = jest.fn()
+        .mockResolvedValue([createRandomProductFixture()])
+
+        sut = sutFactory(productRepositoryMock)
+
+        await expect(sut.execute(productInput)).rejects.toEqual(
+          new Conflict(`The product ${productInput.name} already exists`)
+        )
+      })
     })
   });
