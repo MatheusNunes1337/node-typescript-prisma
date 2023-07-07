@@ -16,7 +16,6 @@ describe("Given the CreateProductUseCase", () => {
 
     beforeAll(() => {
       productRepositoryMock = productRepositoryMockFactory();
-      sut = sutFactory(productRepositoryMock);
       productInput = createRandomProductFixture()
     });
 
