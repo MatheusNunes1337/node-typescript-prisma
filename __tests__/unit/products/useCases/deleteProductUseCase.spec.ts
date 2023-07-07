@@ -3,7 +3,7 @@ import { ProductRepository } from "../../../../src/app/products/repositories/Pro
 import { DeleteProductUseCaseImpl } from "../../../../src/app/products/useCases/DeleteProduct/DeleteProductUseCaseImpl";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 
-function sutFactory(productRepository: ProductRepository): DeleteProductUseCaseImpl {
+function makeSut(productRepository: ProductRepository): DeleteProductUseCaseImpl {
     return new DeleteProductUseCaseImpl(productRepository);
 }
 
@@ -18,7 +18,7 @@ describe("Given the DeleteProductUseCase", () => {
     describe("when a product ID that exists is provided", () => {
         test("then it should call delete method to delete the product", async () => {
             productRepositoryMock.findById = jest.fn().mockResolvedValue(true)
-            sut = sutFactory(productRepositoryMock)
+            sut = makeSut(productRepositoryMock)
 
             await sut.execute(Math.random())
         
@@ -29,7 +29,7 @@ describe("Given the DeleteProductUseCase", () => {
     describe("when a product ID that NOT exists is provided", () => {
         test("then it should throw a not found error", async () => {
             productRepositoryMock.findById = jest.fn().mockResolvedValue(false)
-            sut = sutFactory(productRepositoryMock)
+            sut = makeSut(productRepositoryMock)
 
             await expect(sut.execute(Math.random())).rejects.toEqual(
                 new NotFound('Product')

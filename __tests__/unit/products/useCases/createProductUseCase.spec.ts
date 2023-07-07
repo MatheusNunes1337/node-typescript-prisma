@@ -5,7 +5,7 @@ import { ProductRepository } from "../../../../src/app/products/repositories/Pro
 import { CreateProductUseCaseImpl } from "../../../../src/app/products/useCases/CreateProduct/CreateProductServiceImpl";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 
-function sutFactory(productRepository: ProductRepository): CreateProductUseCaseImpl {
+function makeSut(productRepository: ProductRepository): CreateProductUseCaseImpl {
   return new CreateProductUseCaseImpl(productRepository);
 }
 
@@ -27,7 +27,7 @@ describe("Given the CreateProductUseCase", () => {
         productRepositoryMock.findByFilter = jest.fn()
         .mockResolvedValue([])
   
-        sut = sutFactory(productRepositoryMock);
+        sut = makeSut(productRepositoryMock);
 
         const result = await sut.execute(productInput)
 
@@ -47,7 +47,7 @@ describe("Given the CreateProductUseCase", () => {
         productRepositoryMock.findByFilter = jest.fn()
         .mockResolvedValue([createRandomProductFixture()])
 
-        sut = sutFactory(productRepositoryMock)
+        sut = makeSut(productRepositoryMock)
 
         await expect(sut.execute(productInput)).rejects.toEqual(
           new Conflict(`The product ${productInput.name} already exists`)

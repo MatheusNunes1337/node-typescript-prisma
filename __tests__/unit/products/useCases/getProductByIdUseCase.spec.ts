@@ -3,7 +3,7 @@ import { GetProductByIdUseCaseImpl } from "../../../../src/app/products/useCases
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
 
-const sutFactory = (productRepository: ProductRepository) => {
+const makeSut = (productRepository: ProductRepository) => {
     return new GetProductByIdUseCaseImpl(productRepository)
 }
 
@@ -21,7 +21,7 @@ describe("Given the GetProductByIdUseCase", () => {
             productRepositoryMock.findById = jest.fn().
             mockResolvedValue(foundProduct)
 
-            sut = sutFactory(productRepositoryMock)
+            sut = makeSut(productRepositoryMock)
 
             const result = await sut.execute(Math.random())
 
@@ -43,7 +43,7 @@ describe("Given the GetProductByIdUseCase", () => {
             productRepositoryMock.findById = jest.fn().
             mockResolvedValue(null)
 
-            sut = sutFactory(productRepositoryMock)
+            sut = makeSut(productRepositoryMock)
 
             const result = await sut.execute(Math.random())
 
