@@ -1,13 +1,12 @@
 import { User } from "@prisma/client";
 import bcrypt from 'bcrypt';
 
-import { UserRepository } from "../../repositories/UserRepository";
-import { CreateUserUseCase } from "./CreateUserUseCase";
-import { CreateUserDTO } from "../../dto/CreateUserDto";
-import { Conflict } from "../../../errors/Conflict";
+import { IUserRepository } from "../repositories/IUserRepository";
+import { CreateUserDTO } from "../dto/CreateUserDto";
+import { Conflict } from "../../errors/Conflict";
 
-export class CreateUserUseCaseImpl implements CreateUserUseCase {
-    constructor(private readonly userRepository: UserRepository) {}
+export class CreateUserUseCase {
+    constructor(private readonly userRepository: IUserRepository) {}
 
     async execute(userInput: CreateUserDTO): Promise<User> {
         const {email, cpf} = userInput

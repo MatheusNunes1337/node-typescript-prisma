@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UpdateProductUseCase } from "../useCases/UpdateProduct/UpdateProductUseCase";
-import { PutProductOnSaleUseCase } from "../useCases/PutProductOnSale/PutProductOnSaleUseCase";
+import { PutProductOnSaleUseCase } from "../useCases";
 
 export class PutProductOnSaleController {
     constructor(private readonly putProductOnSaleUseCase: PutProductOnSaleUseCase) {}

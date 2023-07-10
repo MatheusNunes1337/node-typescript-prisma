@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { createProductController } from '../app/products/useCases/CreateProduct'
-import { getAllProductsController } from '../app/products/useCases/getAllProducts'
-import { getProductByIdController } from '../app/products/useCases/getProductById'
-import { updateProductController } from '../app/products/useCases/UpdateProduct'
-import { deleteProductController } from '../app/products/useCases/DeleteProduct'
-import { putProductOnSaleController } from '../app/products/useCases/PutProductOnSale'
+import {
+    createProductController,
+    deleteProductController,
+    getAllProductsController,
+    getProductByIdController,
+    putProductOnSaleController,
+    updateProductController
+} from '../app/products/di'
 
 const productRoutes = Router()
 

@@ -1,4 +1,8 @@
-import { ProductRepository } from "../../../src/app/products/repositories/ProductRepository";
+import { ProductRepository } from "../../../src/app/products/repositories";
+
+class ProductRepositoryMock implements   {
+  
+}
 
 export function productRepositoryMockFactory(): ProductRepository {
   const productRepositoryMock: ProductRepository = {

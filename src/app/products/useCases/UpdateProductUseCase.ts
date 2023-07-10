@@ -1,12 +1,11 @@
 import { Product } from "@prisma/client";
-import { UpdateProductDTO } from "../../dto/UpdateProductDto";
-import { ProductRepository } from "../../repositories/ProductRepository";
-import { UpdateProductUseCase } from "./UpdateProductUseCase";
-import { Conflict } from "../../../errors/Conflict";
-import { NotFound } from "../../../errors/NotFound";
+import { UpdateProductDTO } from "../dto/UpdateProductDto";
+import { IProductRepository } from "../repositories/IProductRepository";
+import { Conflict } from "../../errors/Conflict";
+import { NotFound } from "../../errors/NotFound";
 
-export class UpdateProductUseCase implements UpdateProductUseCase {
-    constructor(private readonly productRepository: ProductRepository) {}
+export class UpdateProductUseCase {
+    constructor(private readonly productRepository: IProductRepository) {}
 
     async execute(product: UpdateProductDTO, id: number): Promise<Product> {
         const productExists = await this.productRepository.findById(id)

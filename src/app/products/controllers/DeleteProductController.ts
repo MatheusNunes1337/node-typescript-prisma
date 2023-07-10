@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { DeleteProductUseCase } from "../useCases/DeleteProduct/DeleteProductUseCase";
+import { DeleteProductUseCase } from "../useCases";
 
 export class DeleteProductController {
     constructor(private readonly deleteProductUseCase: DeleteProductUseCase) {}

@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { getAllUsersController } from '../app/users/useCases/getAllUsers'
-import { createUserController } from '../app/users/useCases/CreateUser'
+import { createUserController, getAllUsersController } from '../app/users/di'
 
 const userRoutes = Router()
 

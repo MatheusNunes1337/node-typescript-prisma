@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateProductUseCase } from "../useCases/CreateProduct/CreateProductUseCase";
+import { CreateProductUseCase } from "../useCases";
 
 export class CreateProductController {
     constructor (private readonly createProductUseCase: CreateProductUseCase) {}

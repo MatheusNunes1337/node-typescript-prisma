@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { GetProductByIdUseCase } from "../useCases/getProductById/GetProductByIdUseCase";
+import { GetProductByIdUseCase } from "../useCases";
 
 export class GetProductByIdController {
     constructor(private readonly getProductByIdUseCase: GetProductByIdUseCase) {}
