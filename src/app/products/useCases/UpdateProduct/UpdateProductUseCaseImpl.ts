@@ -5,7 +5,7 @@ import { UpdateProductUseCase } from "./UpdateProductUseCase";
 import { Conflict } from "../../../errors/Conflict";
 import { NotFound } from "../../../errors/NotFound";
 
-export class UpdateProductUseCaseImpl implements UpdateProductUseCase {
+export class UpdateProductUseCase implements UpdateProductUseCase {
     constructor(private readonly productRepository: ProductRepository) {}
 
     async execute(product: UpdateProductDTO, id: number): Promise<Product> {

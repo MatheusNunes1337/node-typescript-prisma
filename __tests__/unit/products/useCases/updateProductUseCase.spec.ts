@@ -1,16 +1,16 @@
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
-import { UpdateProductUseCaseImpl } from "../../../../src/app/products/useCases/UpdateProduct/UpdateProductUseCaseImpl";
+import { UpdateProductUseCase } from "../../../../src/app/products/useCases/UpdateProduct/UpdateProductUseCaseImpl";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
 import { NotFound } from "../../../../src/app/errors/NotFound";
 import { Conflict } from "../../../../src/app/errors/Conflict";
 
-const makeSut = (productRepository: ProductRepository): UpdateProductUseCaseImpl  => {
-    return new UpdateProductUseCaseImpl(productRepository)
+const makeSut = (productRepository: ProductRepository): UpdateProductUseCase  => {
+    return new UpdateProductUseCase(productRepository)
 }
 
 describe("Given the UpdateProductUseCase", () => {
-    let sut: UpdateProductUseCaseImpl
+    let sut: UpdateProductUseCase
     let productRepositoryMock: ProductRepository
     
     beforeAll(() => {
