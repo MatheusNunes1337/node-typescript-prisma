@@ -1,21 +1,26 @@
 import { PrismaClient, Product } from '@prisma/client';
-/*import { CreateProductDTO } from '../dto/CreateProductDto';
-import { FilterProductsDTO } from '../dto/FilterProductsDto';
-import { UpdateProductDTO } from '../dto/UpdateProductDto';
-import { ProductRepositoryImpl } from './ProductRepositoryImpl';*/
+//import { CreateProductDTO } from '../dto/CreateProductDto';
+//import { FilterProductsDTO } from '../dto/FilterProductsDto';
+//import { UpdateProductDTO } from '../dto/UpdateProductDto';
+import { ProductRepository } from '../../../../src/app/products/repositories';
 
 describe('ProductRepositoryImpl', () => {
   let prismaClient: PrismaClient;
-  let productRepository: ProductRepositoryImpl;
+  let productRepository: ProductRepository;
 
   beforeAll(() => {
     prismaClient = new PrismaClient();
-    productRepository = new ProductRepositoryImpl(prismaClient);
+    productRepository = new ProductRepository(prismaClient);
   });
+
+  afterEach(async () => {
+    await prismaClient.product.deleteMany()
+  })
 
   afterAll(async () => {
     await prismaClient.$disconnect();
   });
+
 
   describe('create', () => {
     it('should create a new product', async () => {
