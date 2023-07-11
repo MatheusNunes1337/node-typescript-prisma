@@ -27,6 +27,21 @@ describe('Given the Product Repository', () => {
     });
   });
 
+  describe('when the findAll method is called', () => {
+    test('then it should return all products', async () => {
+     
+      const foundProducts = [{id: Math.random(), ...createRandomProductFixture()}]
+      prismaMock.product.findMany.mockResolvedValue(foundProducts)
+    
+      const sut = makeSut()
+      const result = await sut.findAll();
+
+      expect(result).toBeDefined();
+      expect(Array.isArray(foundProducts)).toBeTruthy()
+      expect(result).toEqual(foundProducts)
+    });
+  });
+
   /*
   describe('findAll', () => {
     it('should return an array of products', async () => {
