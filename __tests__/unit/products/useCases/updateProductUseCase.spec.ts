@@ -1,5 +1,5 @@
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
-import { UpdateProductUseCase } from "../../../../src/app/products/useCases/UpdateProduct/UpdateProductUseCaseImpl";
+import { UpdateProductUseCase } from "../../../../src/app/products/useCases";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
 import { NotFound } from "../../../../src/app/errors/NotFound";
@@ -11,7 +11,7 @@ const makeSut = (productRepository: ProductRepository): UpdateProductUseCase  =>
 
 describe("Given the UpdateProductUseCase", () => {
     let sut: UpdateProductUseCase
-    let productRepositoryMock: ProductRepository
+    let productRepositoryMock: any
     
     beforeAll(() => {
         productRepositoryMock = productRepositoryMockFactory()

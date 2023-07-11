@@ -1,16 +1,16 @@
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
-import { GetAllProductsUseCaseImpl } from "../../../../src/app/products/useCases/getAllProducts/GetAllProductsUseCaseImpl";
+import { GetAllProductsUseCase } from "../../../../src/app/products/useCases";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 import { createRandomProductFixture } from "../../../../fixtures/products/productFixtures";
 
 const makeSut = (productRepository: ProductRepository) => {
-    return new GetAllProductsUseCaseImpl(productRepository)
+    return new GetAllProductsUseCase(productRepository)
 }
 
 
 describe("Given the GetAllProductsUseCase", () => {
-    let sut: GetAllProductsUseCaseImpl
-    let productRepositoryMock: ProductRepository
+    let sut: GetAllProductsUseCase
+    let productRepositoryMock: any
     let foundProducts: Array<any>
 
     beforeAll(() => {

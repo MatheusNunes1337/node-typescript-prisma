@@ -2,16 +2,16 @@ import { createRandomProductFixture } from "../../../../fixtures/products/produc
 import { Conflict } from "../../../../src/app/errors/Conflict";
 import { CreateProductDTO } from "../../../../src/app/products/dto/CreateProductDto";
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
-import { CreateProductUseCaseImpl } from "../../../../src/app/products/useCases/CreateProduct/CreateProductServiceImpl";
+import { CreateProductUseCase } from "../../../../src/app/products/useCases";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 
-function makeSut(productRepository: ProductRepository): CreateProductUseCaseImpl {
-  return new CreateProductUseCaseImpl(productRepository);
+function makeSut(productRepository: ProductRepository): CreateProductUseCase {
+  return new CreateProductUseCase(productRepository);
 }
 
 describe("Given the CreateProductUseCase", () => {
-    let sut: CreateProductUseCaseImpl;
-    let productRepositoryMock: ProductRepository;
+    let sut: CreateProductUseCase;
+    let productRepositoryMock: any;
     let productInput: CreateProductDTO
 
     beforeAll(() => {

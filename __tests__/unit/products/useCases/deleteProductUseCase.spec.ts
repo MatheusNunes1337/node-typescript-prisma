@@ -1,15 +1,15 @@
 import { NotFound } from "../../../../src/app/errors/NotFound";
 import { ProductRepository } from "../../../../src/app/products/repositories/ProductRepository";
-import { DeleteProductUseCaseImpl } from "../../../../src/app/products/useCases/DeleteProduct/DeleteProductUseCaseImpl";
+import { DeleteProductUseCase } from "../../../../src/app/products/useCases";
 import { productRepositoryMockFactory } from "../../../factories/products/productRepositoryMockFactory";
 
-function makeSut(productRepository: ProductRepository): DeleteProductUseCaseImpl {
-    return new DeleteProductUseCaseImpl(productRepository);
+function makeSut(productRepository: ProductRepository): DeleteProductUseCase {
+    return new DeleteProductUseCase(productRepository);
 }
 
 describe("Given the DeleteProductUseCase", () => {
-    let sut: DeleteProductUseCaseImpl
-    let productRepositoryMock: ProductRepository;
+    let sut: DeleteProductUseCase
+    let productRepositoryMock: any;
 
     beforeAll(() => {
         productRepositoryMock = productRepositoryMockFactory();
