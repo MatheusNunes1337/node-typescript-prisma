@@ -42,19 +42,59 @@ describe('Given the Product Repository', () => {
     });
   });
 
-  /*
-  describe('findAll', () => {
-    it('should return an array of products', async () => {
-      // Chame o método findAll do repositório
-      const products = await productRepository.findAll();
-
-      // Faça asserções para verificar se a resposta é um array de produtos
-      expect(Array.isArray(products)).toBe(true);
-      // ... faça mais asserções de acordo com a lógica do seu código
-    });
+  describe('when the findById method is called', () => {
+    test('then it should return the product', async () => {
+     
+      const foundProduct = {id: Math.random(), ...createRandomProductFixture()}
+      prismaMock.product.findUnique.mockResolvedValue(foundProduct)
     
-  });
-  */
+      const sut = makeSut()
+      const result = await sut.findById(Math.random());
 
-  // Adicione testes para os demais métodos do repositório (findByFilter, findById, update, delete)
+      expect(result).toBeDefined();
+      expect(result).toEqual(foundProduct)
+    });
+  });
+
+  describe('when the findByFilter method is called', () => {
+    test('then it should return filtered products', async () => {
+     
+      const foundProducts = [{id: Math.random(), ...createRandomProductFixture()}]
+      prismaMock.product.findMany.mockResolvedValue(foundProducts)
+    
+      const sut = makeSut()
+      const result = await sut.findByFilter({name: foundProducts[0].name});
+
+      expect(result).toBeDefined();
+      expect(Array.isArray(foundProducts)).toBeTruthy()
+      expect(result).toEqual(foundProducts)
+    });
+  });
+
+  describe('when the update method is called', () => {
+    test('then it should update a product', async () => {
+     
+      const updatedProduct = {id: Math.random(), ...createRandomProductFixture()}
+      prismaMock.product.update.mockResolvedValue(updatedProduct)
+    
+      const sut = makeSut()
+      const productInput = createRandomProductFixture()
+      const result = await sut.update(productInput, Math.random());
+
+      expect(result).toBeDefined();
+      expect(result).toEqual(updatedProduct)
+    });
+  });
+
+  describe('when the delete method is called', () => {
+    test('then it should delete a product', async () => {
+     
+      prismaMock.product.delete.mockResolvedValue 
+    
+      const sut = makeSut()
+
+      await expect(sut.delete(Math.random())).not.toThrowError()
+    });
+  });
+
 });
