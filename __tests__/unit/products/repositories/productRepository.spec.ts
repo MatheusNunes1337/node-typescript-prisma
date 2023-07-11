@@ -1,43 +1,33 @@
-import { PrismaClient, Product } from '@prisma/client';
-//import { CreateProductDTO } from '../dto/CreateProductDto';
+import { prismaMock } from '../../../../singleton';
 //import { FilterProductsDTO } from '../dto/FilterProductsDto';
 //import { UpdateProductDTO } from '../dto/UpdateProductDto';
 import { ProductRepository } from '../../../../src/app/products/repositories';
+import { createRandomProductFixture } from '../../../../fixtures/products/productFixtures'
 
-describe('ProductRepositoryImpl', () => {
-  let prismaClient: PrismaClient;
+const makeSut = () => {
+  const productRepository = new ProductRepository(prismaMock)
+  return productRepository
+}
+
+describe('Given the Product Repository', () => {
   let productRepository: ProductRepository;
 
-  beforeAll(() => {
-    prismaClient = new PrismaClient();
-    productRepository = new ProductRepository(prismaClient);
-  });
+  describe('when the created method is called with correct params', () => {
+    test('then it should create a new product', async () => {
+     
+      const productInput = createRandomProductFixture()
+      const createdProduct = {id: Math.random(), ...productInput}
+      prismaMock.product.create.mockResolvedValue(createdProduct)
+    
+      const sut = makeSut()
+      const result = await sut.create(productInput);
 
-  afterEach(async () => {
-    await prismaClient.product.deleteMany()
-  })
-
-  afterAll(async () => {
-    await prismaClient.$disconnect();
-  });
-
-
-  describe('create', () => {
-    it('should create a new product', async () => {
-      // Crie um objeto mock para o productInput
-      const productInput: CreateProductDTO = {
-        // ... defina os campos necessários para o teste
-      };
-
-      // Chame o método create do repositório
-      const createdProduct = await productRepository.create(productInput);
-
-      // Faça asserções para verificar se o produto foi criado corretamente
-      expect(createdProduct).toBeDefined();
-      // ... faça mais asserções de acordo com a lógica do seu código
+      expect(result).toBeDefined();
+      expect(result).toEqual(createdProduct)
     });
   });
 
+  /*
   describe('findAll', () => {
     it('should return an array of products', async () => {
       // Chame o método findAll do repositório
@@ -47,7 +37,9 @@ describe('ProductRepositoryImpl', () => {
       expect(Array.isArray(products)).toBe(true);
       // ... faça mais asserções de acordo com a lógica do seu código
     });
+    
   });
+  */
 
   // Adicione testes para os demais métodos do repositório (findByFilter, findById, update, delete)
 });

@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import { CreateProductDTO } from "../../src/app/products/dto/CreateProductDto";
 
 
-export const createRandomProductFixture = () : CreateProductDTO => {
+export const createRandomProductFixture = () : any => {
     return {
       'name': faker.word.noun(),
       description: faker.lorem.sentence(),
